@@ -1,0 +1,76 @@
+.bodyDiv{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: auto;
+    align-items: center;
+    border: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.displayDiv > h2{
+    background-color: rgb(235, 235, 235);
+    height: 40px;
+    width: 197.6px;
+    margin: 0px;
+    padding-top: 5px;
+    border-radius: 0.5px;
+    border-color: black;
+    border: solid;
+    text-align: right;
+    vertical-align: middle;
+    overflow: hidden;
+    
+}
+
+.displayDiv {
+    background-color: black;
+    height: 40px;
+    width: 200px;
+}
+.buttonsDiv{
+    display: flex;
+}
+
+.numberDiv{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.operatorDiv{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.numberButtons, .operatorButton{
+    min-height: 50px;
+    min-width: 50px;
+    text-align: center;
+    padding: 0px;
+    box-shadow: 1px;
+}
+
+.numberButtons{
+    background-color: rgb(3, 46, 33);
+    color: white;
+}
+
+.operatorButton{
+    background-color: beige;
+}
+
+#equalButton{
+    flex-grow: 1;
+}
+
+/* #sevenButton, #eightButton, #nineButton, #fourButton, #fiveButton, #sixButton, #oneButton, #twoButton, #threeButton, #doublezeroButton, #zeroButton{
+background-color: aquamarine;
+color: black;
+} */
+
+#ACButton{
+    background-color: rgb(216, 68, 68);
+}   
