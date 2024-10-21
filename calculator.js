@@ -19,7 +19,8 @@ function initializeCalculator() {
 }
 
 function eventListenerForNumberBtn(e) {
-
+    e.srcElement.style.opacity = "0.7";
+    setTimeout((e) => {numberButtonOpacityAnimation(e)},200);
     switch (e.srcElement.id) {
         case "oneButton":
             screenNumber += "1";
@@ -104,7 +105,7 @@ function eventListenerForNumberBtn(e) {
             break;
 
         case "equalButton":
-            if(screenNumber === ".") 
+             if(screenNumber === ".") 
                 {
                     screenNumber = "";
                     document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
@@ -117,7 +118,19 @@ function eventListenerForNumberBtn(e) {
 
 }
 
+function operatorButtonOpacityAnimation(e){
+    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".operatorButton"));
+    allOperatorButtonsOpacity.map((item) => {item.style.opacity = 1});
+}
+
+function numberButtonOpacityAnimation(e){
+    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".numberButtons"));
+    allOperatorButtonsOpacity.map((item) => {item.style.opacity = 1});
+}
+
 function eventListenerForOperatorBtn(e) {
+    e.srcElement.style.opacity = "0.7";
+    setTimeout((e) => {operatorButtonOpacityAnimation(e)},200);
     if(screenNumber === ".") return;
     if (e.srcElement.id === "percentageButton") {
         if(screenNumber === "" && savedAnswer === 0) return;

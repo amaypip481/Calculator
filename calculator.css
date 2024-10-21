@@ -12,9 +12,9 @@
 .displayDiv > h2{
     background-color: rgb(235, 235, 235);
     height: 40px;
+    line-height: 40px;
     width: 197.6px;
     margin: 0px;
-    padding-top: 5px;
     border-radius: 0.5px;
     border-color: black;
     border: solid;
@@ -59,7 +59,8 @@
 }
 
 .operatorButton{
-    background-color: beige;
+    background-color: rgb(165, 99, 0);
+    color: black;
 }
 
 #equalButton{
