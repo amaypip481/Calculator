@@ -93,7 +93,7 @@ function eventListenerForNumberBtn(e) {
                 screenNumber = screenNumber.slice(1);
                 document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             }
-            else if (screenNumber != "") {
+            else if (screenNumber != "" && screenNumber != ".") {
                 screenNumber = "-" + screenNumber;
                 document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             }
