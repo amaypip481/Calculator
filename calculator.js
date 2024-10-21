@@ -71,6 +71,7 @@ function eventListenerForNumberBtn(e) {
             document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             break;
         case "decimalButton":
+            if(screenNumber.includes("."))break;
             screenNumber += ".";
             document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             break;
@@ -103,6 +104,12 @@ function eventListenerForNumberBtn(e) {
             break;
 
         case "equalButton":
+            if(screenNumber === ".") 
+                {
+                    screenNumber = "";
+                    document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+                    break;
+                }
             operations(currentOperator, true);
             break;
 
@@ -111,11 +118,14 @@ function eventListenerForNumberBtn(e) {
 }
 
 function eventListenerForOperatorBtn(e) {
+    if(screenNumber === ".") return;
     if (e.srcElement.id === "percentageButton") {
+        if(screenNumber === "" && savedAnswer === 0) return;
         convertToPerceantge();
         return;
     }
     if (currentOperator === "") {
+        if(screenNumber === "") return;
         savedAnswer = parseFloat(screenNumber);
         screenNumber = "";
         document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
