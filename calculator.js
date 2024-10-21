@@ -83,18 +83,18 @@ function eventListenerForNumberBtn(e) {
             break;
 
         case "negativeButton":
-            if(screenNumber === "" & savedAnswer != 0)
-              {  savedAnswer = savedAnswer*-1;
+            if (screenNumber === "" & savedAnswer != 0) {
+                savedAnswer = savedAnswer * -1;
                 document.querySelector(".displayDiv").firstElementChild.textContent = savedAnswer;
-              }
-            else if(screenNumber != "" & screenNumber.charAt(0) === "-")
-               { screenNumber = screenNumber.slice(1);
+            }
+            else if (screenNumber != "" & screenNumber.charAt(0) === "-") {
+                screenNumber = screenNumber.slice(1);
                 document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
-               }
-            else if(screenNumber != "") 
-                {screenNumber = "-" + screenNumber;
-            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
-                }
+            }
+            else if (screenNumber != "") {
+                screenNumber = "-" + screenNumber;
+                document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            }
             break;
 
         case "backButton":
@@ -164,7 +164,10 @@ function operations(previousOperator, isEqual) {
 
 function convertToPerceantge() {
     if (screenNumber === "" && savedAnswer != 0)
+    {
         savedAnswer = savedAnswer / 100;
+        document.querySelector(".displayDiv").firstElementChild.textContent = savedAnswer;
+    }
     else if (screenNumber != "") {
         screenNumber = parseFloat(screenNumber) / 100;
         document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
