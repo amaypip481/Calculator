@@ -59,18 +59,13 @@
 }
 
 .operatorButton{
-    background-color: rgb(165, 99, 0);
+    background-color: rgb(253, 183, 78);
     color: black;
 }
 
 #equalButton{
     flex-grow: 1;
 }
-
-/* #sevenButton, #eightButton, #nineButton, #fourButton, #fiveButton, #sixButton, #oneButton, #twoButton, #threeButton, #doublezeroButton, #zeroButton{
-background-color: aquamarine;
-color: black;
-} */
 
 #ACButton{
     background-color: rgb(216, 68, 68);
