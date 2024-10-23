@@ -289,13 +289,20 @@ function keyPressed(e) {
 
             }
             operations(currentOperator, false);
-            if(e.key === "+") currentOperator = "addButton";
-            else if(e.key === "-") currentOperator = "subtractButton";
-            else if(e.key === "/") currentOperator = "divideButton";
-            else if(e.key === "*") currentOperator = "multiplyButton";
+            if (e.key === "+") currentOperator = "addButton";
+            else if (e.key === "-") currentOperator = "subtractButton";
+            else if (e.key === "/") currentOperator = "divideButton";
+            else if (e.key === "*") currentOperator = "multiplyButton";
             break;
     }
 }
+
+// Add tap/click event on display element
+
+let displayDivTap = document.querySelector(".displayDiv");
+displayDivTap.firstElementChild.addEventListener("click",(e) =>{
+e.target.focus();
+})
 
 //Some CSS functions for animations
 
