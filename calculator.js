@@ -3,6 +3,8 @@ let savedAnswer = 0;
 let currentOperator = "";
 
 
+//Initializes calculator. can be later used for keeping a CE buttion
+
 function initializeCalculator() {
     let allNumberButtons = document.querySelector(".numberDiv");
     let children = allNumberButtons.querySelectorAll("*");
@@ -18,9 +20,11 @@ function initializeCalculator() {
 
 }
 
+//Numberbuttions eventlistener functions
+
 function eventListenerForNumberBtn(e) {
     e.srcElement.style.opacity = "0.7";
-    setTimeout((e) => {numberButtonOpacityAnimation(e)},200);
+    setTimeout((e) => { numberButtonOpacityAnimation(e) }, 200);
     switch (e.srcElement.id) {
         case "oneButton":
             screenNumber += "1";
@@ -72,7 +76,7 @@ function eventListenerForNumberBtn(e) {
             document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             break;
         case "decimalButton":
-            if(screenNumber.includes("."))break;
+            if (screenNumber.includes(".")) break;
             screenNumber += ".";
             document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
             break;
@@ -105,12 +109,11 @@ function eventListenerForNumberBtn(e) {
             break;
 
         case "equalButton":
-             if(screenNumber === ".") 
-                {
-                    screenNumber = "";
-                    document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
-                    break;
-                }
+            if (screenNumber === ".") {
+                screenNumber = "";
+                document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+                break;
+            }
             operations(currentOperator, true);
             break;
 
@@ -118,27 +121,19 @@ function eventListenerForNumberBtn(e) {
 
 }
 
-function operatorButtonOpacityAnimation(e){
-    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".operatorButton"));
-    allOperatorButtonsOpacity.map((item) => {item.style.opacity = 1});
-}
-
-function numberButtonOpacityAnimation(e){
-    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".numberButtons"));
-    allOperatorButtonsOpacity.map((item) => {item.style.opacity = 1});
-}
+//Operatorbuttions eventlistener functions
 
 function eventListenerForOperatorBtn(e) {
     e.srcElement.style.opacity = "0.7";
-    setTimeout((e) => {operatorButtonOpacityAnimation(e)},200);
-    if(screenNumber === ".") return;
+    setTimeout((e) => { operatorButtonOpacityAnimation(e) }, 200);
+    if (screenNumber === ".") return;
     if (e.srcElement.id === "percentageButton") {
-        if(screenNumber === "" && savedAnswer === 0) return;
+        if (screenNumber === "" && savedAnswer === 0) return;
         convertToPerceantge();
         return;
     }
     if (currentOperator === "") {
-        if(screenNumber === "") return;
+        if (screenNumber === "") return;
         savedAnswer = parseFloat(screenNumber);
         screenNumber = "";
         document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
@@ -149,6 +144,9 @@ function eventListenerForOperatorBtn(e) {
 }
 
 initializeCalculator();
+
+
+//Actual operations are defined using switch-case
 
 function operations(previousOperator, isEqual) {
     switch (previousOperator) {
@@ -185,9 +183,10 @@ function operations(previousOperator, isEqual) {
     document.querySelector(".displayDiv").firstElementChild.textContent = savedAnswer;
 }
 
+//Specific function for Percentage
+
 function convertToPerceantge() {
-    if (screenNumber === "" && savedAnswer != 0)
-    {
+    if (screenNumber === "" && savedAnswer != 0) {
         savedAnswer = savedAnswer / 100;
         document.querySelector(".displayDiv").firstElementChild.textContent = savedAnswer;
     }
@@ -195,4 +194,117 @@ function convertToPerceantge() {
         screenNumber = parseFloat(screenNumber) / 100;
         document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
     }
+}
+
+//keyboard listener for number button
+
+document.addEventListener("keydown", keyPressed);
+
+function keyPressed(e) {
+    switch (e.key) {
+        case "1":
+            screenNumber += "1";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "2":
+            screenNumber += "2";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "3":
+            screenNumber += "3";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "4":
+            screenNumber += "4";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "5":
+            screenNumber += "5";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "6":
+            screenNumber += "6";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "7":
+            screenNumber += "7";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "8":
+            screenNumber += "8";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "9":
+            screenNumber += "9";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "0":
+            screenNumber += "0";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+        case ".":
+            if (screenNumber.includes(".")) break;
+            screenNumber += ".";
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+
+        case "Backspace":
+            screenNumber = screenNumber.slice(0, -1);
+            document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+            break;
+
+        case "=":
+        case "Enter":
+            if (screenNumber === ".") {
+                screenNumber = "";
+                document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+                break;
+            }
+            operations(currentOperator, true);
+            break;
+        case "+":
+        case "-":
+        case "/":
+        case "*":
+        case "%":
+            if (screenNumber === ".") return;
+            if (e.key === "%") {
+                if (screenNumber === "" && savedAnswer === 0) return;
+                convertToPerceantge();
+                return;
+            }
+            if (currentOperator === "") {
+                if (screenNumber === "") return;
+                savedAnswer = parseFloat(screenNumber);
+                screenNumber = "";
+                document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
+
+            }
+            operations(currentOperator, false);
+            if(e.key === "+") currentOperator = "addButton";
+            else if(e.key === "-") currentOperator = "subtractButton";
+            else if(e.key === "/") currentOperator = "divideButton";
+            else if(e.key === "*") currentOperator = "multiplyButton";
+            break;
+    }
+}
+
+//Some CSS functions for animations
+
+function operatorButtonOpacityAnimation(e) {
+    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".operatorButton"));
+    allOperatorButtonsOpacity.map((item) => { item.style.opacity = 1 });
+}
+
+function numberButtonOpacityAnimation(e) {
+    let allOperatorButtonsOpacity = Array.from(document.querySelectorAll(".numberButtons"));
+    allOperatorButtonsOpacity.map((item) => { item.style.opacity = 1 });
 }
