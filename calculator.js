@@ -25,6 +25,10 @@ function initializeCalculator() {
 function eventListenerForNumberBtn(e) {
     e.srcElement.style.opacity = "0.7";
     setTimeout((e) => { numberButtonOpacityAnimation(e) }, 200);
+    if (screenNumber.length >= 15) {
+        alert("This calculator only take 15 digits")
+        return;
+    }
     switch (e.srcElement.id) {
         case "oneButton":
             screenNumber += "1";
@@ -121,7 +125,7 @@ function eventListenerForNumberBtn(e) {
 
 }
 
-//Operatorbuttions eventlistener functions
+//Operatorbuttons eventlistener functions
 
 function eventListenerForOperatorBtn(e) {
     e.srcElement.style.opacity = "0.7";
@@ -143,8 +147,6 @@ function eventListenerForOperatorBtn(e) {
     currentOperator = e.srcElement.id;
 }
 
-initializeCalculator();
-
 
 //Actual operations are defined using switch-case
 
@@ -152,19 +154,19 @@ function operations(previousOperator, isEqual) {
     switch (previousOperator) {
         case "addButton":
             if (screenNumber === "") break;
-            savedAnswer = savedAnswer + parseFloat(screenNumber);
+            savedAnswer = Math.round((savedAnswer + parseFloat(screenNumber)) * (Math.pow(10,10))) /( Math.pow(10,10));
             screenNumber = "";
             if (!isEqual) currentOperator = "";
             break;
         case "subtractButton":
             if (screenNumber === "") break;
-            savedAnswer = savedAnswer - parseFloat(screenNumber);
+            savedAnswer = Math.round((savedAnswer - parseFloat(screenNumber)) * Math.pow(10,10)) / Math.pow(10,10);
             screenNumber = "";
             if (!isEqual) currentOperator = "";
             break;
         case "multiplyButton":
             if (screenNumber === "") break;
-            savedAnswer = savedAnswer * parseFloat(screenNumber);
+            savedAnswer = Math.round((savedAnswer * parseFloat(screenNumber)) * Math.pow(10,10)) / Math.pow(10,10);
             screenNumber = "";
             if (!isEqual) currentOperator = "";
             break;
@@ -174,7 +176,7 @@ function operations(previousOperator, isEqual) {
                 alert("can't divide by zero!")
                 break;
             }
-            savedAnswer = savedAnswer / parseFloat(screenNumber);
+            savedAnswer = Math.round((savedAnswer / parseFloat(screenNumber)) * Math.pow(10,10)) / Math.pow(10,10);
             screenNumber = "";
             if (!isEqual) currentOperator = "";
             break;
@@ -187,11 +189,11 @@ function operations(previousOperator, isEqual) {
 
 function convertToPerceantge() {
     if (screenNumber === "" && savedAnswer != 0) {
-        savedAnswer = savedAnswer / 100;
+        savedAnswer = Math.round((savedAnswer / 100) * Math.pow(10,10)) / Math.pow(10,10);
         document.querySelector(".displayDiv").firstElementChild.textContent = savedAnswer;
     }
     else if (screenNumber != "") {
-        screenNumber = parseFloat(screenNumber) / 100;
+        screenNumber = Math.round((parseFloat(screenNumber) / 100) * Math.pow(10,10)) / Math.pow(10,10);
         document.querySelector(".displayDiv").firstElementChild.textContent = screenNumber;
     }
 }
@@ -201,6 +203,10 @@ function convertToPerceantge() {
 document.addEventListener("keydown", keyPressed);
 
 function keyPressed(e) {
+    if (screenNumber.length >= 15) {
+        alert("This calculator only take 15 digits")
+        return;
+    }
     switch (e.key) {
         case "1":
             screenNumber += "1";
@@ -297,12 +303,8 @@ function keyPressed(e) {
     }
 }
 
-// Add tap/click event on display element
+initializeCalculator(); // Initializes Calculator
 
-let displayDivTap = document.querySelector(".displayDiv");
-displayDivTap.firstElementChild.addEventListener("click",(e) =>{
-e.target.focus();
-})
 
 //Some CSS functions for animations
 
