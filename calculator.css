@@ -8,6 +8,7 @@
     border-color: black;
     border-width: 2px;
     gap: 1px;
+    touch-action: manipulation;
 }
 
 .displayDiv > h1{
